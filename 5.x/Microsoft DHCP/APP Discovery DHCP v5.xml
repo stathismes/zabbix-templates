@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-01-04T14:54:54Z</date>
+    <groups>
+        <group>
+            <name>Servers Microsoft/DHCP</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>APP Discovery DHCP</template>
+            <name>APP Discovery DHCP</name>
+            <description>Used by the main template &quot;Template Microsoft DHCP&quot;.&#13;
+&#13;
+Original by Dušan Priechodský&#13;
+Modified for Zabbix 5.x by Efstathios Mesaretzidis</description>
+            <groups>
+                <group>
+                    <name>Servers Microsoft/DHCP</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>DHCP Server</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>DHCP Scopes</name>
+                    <key>DHCPv4LLD</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - Addresses Free On Partner Server</name>
+                            <type>DEPENDENT</type>
+                            <key>DHCPv4ScopeStats.AddressesFreeOnPartnerServer[{#SCOPENETWORK}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$..AddressesFreeOnPartnerServer</params>
+                                </step>
+                                <step>
+                                    <type>STR_REPLACE</type>
+                                    <params>null
+0</params>
+                                </step>
+                                <step>
+                                    <type>TRIM</type>
+                                    <params>[]</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>DHCPv4ScopeStats[{#SCOPENETWORK}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - Addresses Free On This Server</name>
+                            <type>DEPENDENT</type>
+                            <key>DHCPv4ScopeStats.AddressesFreeOnThisServer[{#SCOPENETWORK}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$..AddressesFreeOnThisServer</params>
+                                </step>
+                                <step>
+                                    <type>STR_REPLACE</type>
+                                    <params>null
+0</params>
+                                </step>
+                                <step>
+                                    <type>TRIM</type>
+                                    <params>[]</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>DHCPv4ScopeStats[{#SCOPENETWORK}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - AddressesFree</name>
+                            <type>DEPENDENT</type>
+                            <key>DHCPv4ScopeStats.AddressesFree[{#SCOPENETWORK}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$..AddressesFree</params>
+                                </step>
+                                <step>
+                                    <type>TRIM</type>
+                                    <params>[]</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>DHCPv4ScopeStats[{#SCOPENETWORK}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - Addresses In Use On Partner Server</name>
+                            <type>DEPENDENT</type>
+                            <key>DHCPv4ScopeStats.AddressesInUseOnPartnerServer[{#SCOPENETWORK}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$..AddressesInUseOnPartnerServer</params>
+                                </step>
+                                <step>
+                                    <type>STR_REPLACE</type>
+                                    <params>null
+0</params>
+                                </step>
+                                <step>
+                                    <type>TRIM</type>
+                                    <params>[]</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>DHCPv4ScopeStats[{#SCOPENETWORK}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - Addresses In Use On This Server</name>
+                            <type>DEPENDENT</type>
+                            <key>DHCPv4ScopeStats.AddressesInUseOnThisServer[{#SCOPENETWORK}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$..AddressesInUseOnThisServer</params>
+                                </step>
+                                <step>
+                                    <type>STR_REPLACE</type>
+                                    <params>null
+0</params>
+                                </step>
+                                <step>
+                                    <type>TRIM</type>
+                                    <params>[]</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>DHCPv4ScopeStats[{#SCOPENETWORK}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - All Free IP (except the excluded and reserved)</name>
+                            <type>CALCULATED</type>
+                            <key>DHCPv4ScopeStats.Allip[{#SCOPENETWORK}]</key>
+                            <delay>15m</delay>
+                            <history>30d</history>
+                            <params>last(&quot;DHCPv4ScopeStats.Free[{#SCOPENETWORK}]&quot;,0)+last(&quot;DHCPv4ScopeStats.InUse[{#SCOPENETWORK}]&quot;,0)</params>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - Free</name>
+                            <type>DEPENDENT</type>
+                            <key>DHCPv4ScopeStats.Free[{#SCOPENETWORK}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$..Free</params>
+                                </step>
+                                <step>
+                                    <type>TRIM</type>
+                                    <params>[]</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>DHCPv4ScopeStats[{#SCOPENETWORK}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - InUse</name>
+                            <type>DEPENDENT</type>
+                            <key>DHCPv4ScopeStats.InUse[{#SCOPENETWORK}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$..InUse</params>
+                                </step>
+                                <step>
+                                    <type>TRIM</type>
+                                    <params>[]</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>DHCPv4ScopeStats[{#SCOPENETWORK}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - Pending</name>
+                            <type>DEPENDENT</type>
+                            <key>DHCPv4ScopeStats.Pending[{#SCOPENETWORK}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$..Pending</params>
+                                </step>
+                                <step>
+                                    <type>TRIM</type>
+                                    <params>[]</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>DHCPv4ScopeStats[{#SCOPENETWORK}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - PercentageInUse</name>
+                            <type>DEPENDENT</type>
+                            <key>DHCPv4ScopeStats.PercentageInUse[{#SCOPENETWORK}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$..PercentageInUse</params>
+                                </step>
+                                <step>
+                                    <type>TRIM</type>
+                                    <params>[]</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>DHCPv4ScopeStats[{#SCOPENETWORK}]</key>
+                            </master_item>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;97</expression>
+                                    <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - is full</name>
+                                    <priority>HIGH</priority>
+                                    <description>{#SCOPENAME} [{#SCOPENETWORK}] - is full.&#13;
+Please go to DHCP server and clear any unused or BAD_ADDRESS entries.</description>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - Reserved</name>
+                            <type>DEPENDENT</type>
+                            <key>DHCPv4ScopeStats.Reserved[{#SCOPENETWORK}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$..Reserved</params>
+                                </step>
+                                <step>
+                                    <type>TRIM</type>
+                                    <params>[]</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>DHCPv4ScopeStats[{#SCOPENETWORK}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - json object</name>
+                            <key>DHCPv4ScopeStats[{#SCOPENETWORK}]</key>
+                            <delay>15m</delay>
+                            <history>0</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{APP Discovery DHCP:DHCPv4ScopeStats.Free[{#SCOPENETWORK}].last()}=0 and {APP Discovery DHCP:DHCPv4ScopeStats.InUse[{#SCOPENETWORK}].last()}=0 and {APP Discovery DHCP:DHCPv4ScopeStats.Pending[{#SCOPENETWORK}].last()}=0 and {APP Discovery DHCP:DHCPv4ScopeStats.Reserved[{#SCOPENETWORK}].last()}=0</expression>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}] - Inactive state</name>
+                            <priority>INFO</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>DHCP Scope {#SSCOPENAME} -&gt; {#SCOPENAME} [{#SCOPENETWORK}]</name>
+                            <ymin_type_1>FIXED</ymin_type_1>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>000000</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>APP Discovery DHCP</host>
+                                        <key>DHCPv4ScopeStats.Allip[{#SCOPENETWORK}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>787878</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>APP Discovery DHCP</host>
+                                        <key>DHCPv4ScopeStats.Reserved[{#SCOPENETWORK}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>3</sortorder>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>00FF00</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>APP Discovery DHCP</host>
+                                        <key>DHCPv4ScopeStats.InUse[{#SCOPENETWORK}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>4</sortorder>
+                                    <drawtype>DASHED_LINE</drawtype>
+                                    <color>33691E</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>APP Discovery DHCP</host>
+                                        <key>DHCPv4ScopeStats.AddressesInUseOnPartnerServer[{#SCOPENETWORK}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>5</sortorder>
+                                    <drawtype>FILLED_REGION</drawtype>
+                                    <color>FFBF00</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>APP Discovery DHCP</host>
+                                        <key>DHCPv4ScopeStats.Pending[{#SCOPENETWORK}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>6</sortorder>
+                                    <drawtype>DOTTED_LINE</drawtype>
+                                    <color>0080FF</color>
+                                    <item>
+                                        <host>APP Discovery DHCP</host>
+                                        <key>DHCPv4ScopeStats.PercentageInUse[{#SCOPENETWORK}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                    <lld_macro_paths>
+                        <lld_macro_path>
+                            <lld_macro>{#SCOPENAME}</lld_macro>
+                            <path>$.Name</path>
+                        </lld_macro_path>
+                        <lld_macro_path>
+                            <lld_macro>{#SCOPENETWORK}</lld_macro>
+                            <path>$.ScopeId.IPAddressToString</path>
+                        </lld_macro_path>
+                        <lld_macro_path>
+                            <lld_macro>{#SSCOPENAME}</lld_macro>
+                            <path>$.SuperscopeName</path>
+                        </lld_macro_path>
+                    </lld_macro_paths>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>DHCP Super Scopes</name>
+                    <key>DHCPv4SuperScopeStats</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>DHCP Super Scope {#S.SCOPE.NAME} - All IP (except the excluded and reserved)</name>
+                            <type>CALCULATED</type>
+                            <key>DHCPv4SuperScopeStats.allip[{#S.SCOPE.NAME}]</key>
+                            <delay>30m</delay>
+                            <params>{#S.SCOPE.AVAILABLE}+{#S.SCOPE.INUSE}</params>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Super Scope {#S.SCOPE.NAME} - Available IP</name>
+                            <type>CALCULATED</type>
+                            <key>DHCPv4SuperScopeStats.available[{#S.SCOPE.NAME}]</key>
+                            <delay>30m</delay>
+                            <params>{#S.SCOPE.AVAILABLE}</params>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Super Scope {#S.SCOPE.NAME} - Use IP</name>
+                            <type>CALCULATED</type>
+                            <key>DHCPv4SuperScopeStats.in.use[{#S.SCOPE.NAME}]</key>
+                            <delay>30m</delay>
+                            <params>{#S.SCOPE.INUSE}</params>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Super Scope {#S.SCOPE.NAME} - SubScopes</name>
+                            <type>CALCULATED</type>
+                            <key>DHCPv4SuperScopeStats.numscopes[{#S.SCOPE.NAME}]</key>
+                            <delay>30m</delay>
+                            <params>{#S.SCOPE.NUMSCOPES}</params>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>DHCP Super Scope {#S.SCOPE.NAME} - % Used IP</name>
+                            <type>CALCULATED</type>
+                            <key>DHCPv4SuperScopeStats.p.inuse[{#S.SCOPE.NAME}]</key>
+                            <delay>30m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <params>{#S.SCOPE.P.INUSE}</params>
+                            <applications>
+                                <application>
+                                    <name>DHCP Server</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>DHCP Super Scope {#S.SCOPE.NAME}</name>
+                            <ymin_type_1>FIXED</ymin_type_1>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>000000</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>APP Discovery DHCP</host>
+                                        <key>DHCPv4SuperScopeStats.allip[{#S.SCOPE.NAME}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>00FF00</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>APP Discovery DHCP</host>
+                                        <key>DHCPv4SuperScopeStats.in.use[{#S.SCOPE.NAME}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>3</sortorder>
+                                    <drawtype>DOTTED_LINE</drawtype>
+                                    <color>00BFFF</color>
+                                    <item>
+                                        <host>APP Discovery DHCP</host>
+                                        <key>DHCPv4SuperScopeStats.p.inuse[{#S.SCOPE.NAME}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>4</sortorder>
+                                    <drawtype>DASHED_LINE</drawtype>
+                                    <color>F7941D</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>APP Discovery DHCP</host>
+                                        <key>DHCPv4SuperScopeStats.numscopes[{#S.SCOPE.NAME}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                    <lld_macro_paths>
+                        <lld_macro_path>
+                            <lld_macro>{#S.SCOPE.AVAILABLE}</lld_macro>
+                            <path>$.Available</path>
+                        </lld_macro_path>
+                        <lld_macro_path>
+                            <lld_macro>{#S.SCOPE.INUSE}</lld_macro>
+                            <path>$.InUse</path>
+                        </lld_macro_path>
+                        <lld_macro_path>
+                            <lld_macro>{#S.SCOPE.NAME}</lld_macro>
+                            <path>$.Name</path>
+                        </lld_macro_path>
+                        <lld_macro_path>
+                            <lld_macro>{#S.SCOPE.NUMSCOPES}</lld_macro>
+                            <path>$.NumScopes</path>
+                        </lld_macro_path>
+                        <lld_macro_path>
+                            <lld_macro>{#S.SCOPE.P.INUSE}</lld_macro>
+                            <path>$.PercentageInUse</path>
+                        </lld_macro_path>
+                    </lld_macro_paths>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
