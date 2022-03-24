@@ -13,6 +13,6 @@ Features
 Instalation:
 
 - copy scripts and zabbix_agentd.conf.d into the default zabbix agent install folder.
-- first inmport template "APP Discovery DHCP v5.xml"
-- second import template "Template Microsoft DHCP v5.xml"
+- firstly import template "APP Discovery DHCP v5.xml"
+- secondly import template "Template Microsoft DHCP v5.xml"
 - in your zabbix_agentd.conf configure/change parameter Timeout=30
